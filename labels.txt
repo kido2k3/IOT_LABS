@@ -1,0 +1,3 @@
+0 person
+1 no person
+2 with glass

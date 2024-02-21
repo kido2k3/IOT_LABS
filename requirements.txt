@@ -1,0 +1,4 @@
+adafruit-io==2.7.1
+paho-mqtt==1.6.1
+keras==3.0.5
+numpy==1.26.1
