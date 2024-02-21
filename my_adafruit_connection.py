@@ -6,9 +6,10 @@ import sys
 
 class AdafruitConnection:
     # Some config paras
-    AIO_FEED_NAMES = ['iot-pump', 'iot-led', 'iot-brightness','iot-humidity','iot-temperature','iot-ai']
+    AIO_FEED_NAMES = ['iot-pump', 'iot-led', 'iot-brightness',
+                      'iot-humidity', 'iot-temperature', 'iot-ai']
     AIO_USERNAME = 'kido2k3'
-    AIO_KEY = 'aio_jaOB74D9fmmRysu5Tsjd5m98hin3'
+    AIO_KEY = 'aio_UYAo95juFBpIvqVEoIA3mPOwUlwH'
     client = None
 
     # The callback for when the client receives a CONN_ACK response from the server.
