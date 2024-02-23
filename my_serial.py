@@ -5,7 +5,7 @@ COM4 = "COM4"
 COM5 = "COM5"
 COM7 = "COM7"
 NONE = "None"
-
+COM_WSL = "/dev/ttyS0"
 
 class UART:
     ser = NONE
@@ -13,8 +13,9 @@ class UART:
     port_error = False
 
     def __init__(self) -> None:
-        # self.ser =serial.Serial(port=self.getPort(), baudrate=115200)
-        self.ser = serial.Serial(port=COM7, baudrate=9600)
+        #self.ser =serial.Serial(port=self.getPort(), baudrate=115200)
+        
+        self.ser = serial.Serial(port=COM_WSL, baudrate=9600)
         print(self.ser)
         if self.ser == NONE:
             self.port_error = True
