@@ -4,31 +4,36 @@ import time
 COM4 = "COM4"
 COM5 = "COM5"
 COM7 = "COM7"
-NONE = "None"
-COM_WSL = "/dev/ttyS0"
+COM_WSL = "/dev/pts/2"
+OK_ANS = "OK"
+
 
 class UART:
-    ser = NONE
+    ser = None
     mess = ""
     port_error = False
+    check_connection = True
 
     def __init__(self) -> None:
-        #self.ser =serial.Serial(port=self.getPort(), baudrate=115200)
-        
-        self.ser = serial.Serial(port=COM_WSL, baudrate=9600)
-        print(self.ser)
-        if self.ser == NONE:
+        self.ser = serial.Serial(port=self.getPort(), baudrate=115200)
+
+        # self.ser = serial.Serial(port=COM5, baudrate=9600)
+        # print(self.ser)
+        if self.ser.port == None:
             self.port_error = True
 
     def getPort(self):
         ports = serial.tools.list_ports.comports()
         N = len(ports)
-        commPort = "None"
+        # print(N)
+        commPort = None
         for i in range(0, N):
             port = ports[i]
             strPort = str(port)
-            if "USB Serial Device" in strPort:
+            # print(strPort)
+            if "serial port emulator CNCA1" in strPort:
                 splitPort = strPort.split(" ")
+                # print(splitPort)
                 commPort = (splitPort[0])
         return commPort
 
@@ -39,6 +44,9 @@ class UART:
         print([feed, value])
         text = ''
         address = ''
+        answer = '!'+feed+':'+OK_ANS+'#'
+        if answer != '!send:OK#':
+            self.ser.write(answer.encode())
         if feed == "temp":
             text = f'Publishing {value} to {my_server.AIO_FEED_NAMES[4]}.'
             address = f'{my_server.AIO_USERNAME}/feeds/{my_server.AIO_FEED_NAMES[4]}'
@@ -48,6 +56,8 @@ class UART:
         elif feed == "bright":
             text = f'Publishing {value} to {my_server.AIO_FEED_NAMES[2]}.'
             address = f'{my_server.AIO_USERNAME}/feeds/{my_server.AIO_FEED_NAMES[2]}'
+        elif feed == "send" and value == "OK":
+            self.check_connection = True
         if text != '':
             print(text)
             my_server.client.publish(address, value)
@@ -68,9 +78,17 @@ class UART:
                 else:
                     self.mess = self.mess[end+1:]
 
+    def send_data(self, mess):
+        self.check_connection = False
+        self.ser.write(mess.encode())
+        return
+
 
 # for testing
 # temp = UART()
 # while True:
-#     temp.ReadSerial()
+#     bytesToRead = temp.ser.inWaiting()
+#     if (bytesToRead > 0):
+#         temp.mess = temp.mess + temp.ser.read(bytesToRead).decode("UTF-8")
+#         print(temp.mess)
 #     time.sleep(1)

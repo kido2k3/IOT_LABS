@@ -9,10 +9,12 @@ class AdafruitConnection:
     AIO_FEED_NAMES = ['iot-pump', 'iot-led', 'iot-brightness',
                       'iot-humidity', 'iot-temperature', 'iot-ai']
     AIO_USERNAME = 'kido2k3'
-    AIO_KEY = 'aio_xaXF90SoDr4xIkhtgtaAoe55O9Z1'
+    AIO_KEY = 'aio_Tyju058ZjdAXmMKKjyPGUrbSWMYV'
     client = None
-
+    data = None
+    received = False
     # The callback for when the client receives a CONN_ACK response from the server.
+
     def connected(self, client, user_data, flags, rc):
         # Connected function will be called when the client is connected to Adafruit IO.
         print('Connected to Adafruit IO!')
@@ -33,6 +35,21 @@ class AdafruitConnection:
         # decode payload from bytes to string
         data = data.decode('utf-8')
         print(f'Feed {msg.topic} received new value: {data}')
+        feed = msg.topic.split('/')
+        print(feed)
+        print(feed[2])
+        if feed[2] == 'iot-pump':
+            self.received = True
+            if msg.payload == '0':
+                self.data = '0'
+            else:
+                self.data = '1'
+        elif feed[2] == 'iot-led':
+            self.received = True
+            if msg.payload == '0':
+                self.data = '2'
+            else:
+                self.data = '3'
 
     def disconnected(self, client, user_data, rc):
         # Disconnected function will be called when the client disconnects.
