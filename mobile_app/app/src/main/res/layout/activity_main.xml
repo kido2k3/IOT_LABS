@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/logo2"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:text = "IOT DASHBOARD"
+            android:textSize ="34dp"
+            android:textColor="#1A6A0C"
+            android:textStyle="bold"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40">
+        <TextView
+            android:id="@+id/txtTemperature"
+            android:layout_width= "0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="#0476CF"
+            android:text="65*C"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="#FFFDCA"
+            android:gravity="center"
+            android:layout_margin="28dp"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/txtHumidity"
+            android:layout_width= "0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="#43CA08"
+            android:text="45%"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_margin="28dp"
+            >
+        </TextView>
+    </LinearLayout>
+
+    <com.github.angads25.toggle.widget.LabeledSwitch
+        android:id="@+id/btnLED"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="70dp"
+        app:textOn="bật"
+        app:textOff="tắt"
+        app:on="false"
+        app:colorBorder="@color/colorAccent"/>
+    <com.github.angads25.toggle.widget.LabeledSwitch
+        android:id="@+id/btnPump"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="70dp"
+        app:textOn="bật"
+        app:textOff="tắt"
+        app:on="false"
+        app:colorBorder="#FF0D9DC1"
+        app:colorOn="#0D9DC1"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10">
+
+    </LinearLayout>
+</LinearLayout>
