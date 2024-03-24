@@ -3,3 +3,4 @@
 
 # ignore the cache of python
 __pycache__
+*.pdf
